@@ -20,7 +20,6 @@ function App() {
           <Route path="/historico" element={<Historico />} />
         </Routes>
       </BrowserRouter>
-      <h1>App</h1>
     </>
   );
 }

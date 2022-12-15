@@ -130,6 +130,14 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+
+
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 `;
 
 export default GlobalStyle;
