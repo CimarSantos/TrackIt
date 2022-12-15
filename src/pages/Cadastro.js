@@ -101,7 +101,6 @@ const Form = styled.form`
     border-radius: 5px;
     padding: 15px;
     font-size: 20px;
-    color: #d8d8d8;
   }
   button {
     width: 303px;

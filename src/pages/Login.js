@@ -1,17 +1,53 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 import Logo from "../assets/imgs/Logo.png";
 
 function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [token, setToken] = useState("");
+
+    function fazerLogin(e) {
+      e.preventDefault();
+      const body = {
+        email: email,
+        password: password,
+      };
+      axios
+        .post(
+          `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login`,
+          body
+        )
+        .then((res) => {
+          setToken(res.data.token);
+          navigate("/hoje");
+        })
+        .catch((err) => {
+          alert(`${err.response.data.message} Tente novamente!`);
+        });
+    }
   return (
     <>
       <LogoContainer className="flex">
         <img src={Logo} alt="TrakIt" />
       </LogoContainer>
-      <Form className="flex">
-        <input type="email" placeholder="e-mail"></input>
-        <input type="password" placeholder="senha"></input>
+      <Form className="flex" onSubmit={fazerLogin}>
+        <input
+          type="email"
+          placeholder="e-mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        ></input>
+        <input
+          type="password"
+          placeholder="senha"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        ></input>
         <button type="submit">Entrar</button>
       </Form>
       <Link to="/cadastro">
@@ -46,7 +82,6 @@ const Form = styled.form`
     border-radius: 5px;
     padding: 15px;
     font-size: 20px;
-    color: #d8d8d8;
   }
   button {
     width: 303px;
@@ -60,7 +95,7 @@ const Form = styled.form`
 `;
 
 const LogoContainer = styled.div`
-  padding-top: 20%;
+  padding-top: 10%;
   img {
     width: 250px;
   }

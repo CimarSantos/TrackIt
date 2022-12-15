@@ -131,8 +131,6 @@ table {
     border-spacing: 0;
 }
 
-
-
 .flex{
     display: flex;
     align-items: center;
