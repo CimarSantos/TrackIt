@@ -1,19 +1,72 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import Logo from "../assets/imgs/Logo.png";
+import axios from "axios";
 
 function Cadastro() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [url, setUrl] = useState("");
+  const [password, setPassword] = useState("");
+
+  function Cadastrar(e) {
+    e.preventDefault();
+    const body = {
+      email: email,
+      name: name,
+      image: url,
+      password: password,
+    };
+    axios
+      .post(
+        `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up`,
+        body
+      )
+      .then((res) => {
+        alert("Cadastro realizado com sucesso! Faça seu login.");
+        navigate("/");
+      })
+      .catch((err) => {
+        alert(`${err.response.data.message} Tente novamente`);
+      });
+  }
   return (
     <>
       <LogoContainer className="flex">
         <img src={Logo} alt="TrakIt" />
       </LogoContainer>
-      <Form className="flex">
-        <input type="email" placeholder="e-mail"></input>
-        <input type="password" placeholder="senha"></input>
-        <input type="text" placeholder="nome"></input>
-        <input type="url" placeholder="foto"></input>
+      <Form className="flex" onSubmit={Cadastrar}>
+        <input
+          type="email"
+          placeholder="e-mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        ></input>
+        <input
+          type="password"
+          placeholder="senha"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        ></input>
+        <input
+          type="text"
+          placeholder="nome"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        ></input>
+        <input
+          type="url"
+          placeholder="foto"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          required
+        ></input>
         <button type="submit">Cadastrar</button>
       </Form>
       <Link to="/">
