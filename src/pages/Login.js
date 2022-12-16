@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import UserContext from "../contexts/UserContext";
 import axios from "axios";
 
 import Logo from "../assets/imgs/Logo.png";
@@ -8,28 +9,30 @@ import Logo from "../assets/imgs/Logo.png";
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [token, setToken] = useState("");
+  const [password, setPassword] = useState("");
+  const { setToken } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
-    function fazerLogin(e) {
-      e.preventDefault();
-      const body = {
-        email: email,
-        password: password,
-      };
-      axios
-        .post(
-          `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login`,
-          body
-        )
-        .then((res) => {
-          setToken(res.data.token);
-          navigate("/hoje");
-        })
-        .catch((err) => {
-          alert(`${err.response.data.message} Tente novamente!`);
-        });
-    }
+  function fazerLogin(e) {
+    e.preventDefault();
+    const body = {
+      email: email,
+      password: password,
+    };
+    axios
+      .post(
+        `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login`,
+        body
+      )
+      .then((res) => {
+        setToken(res.data.token);
+        setUser(res.data);
+        navigate("/hoje");
+      })
+      .catch((err) => {
+        alert(`${err.response.data.message} Tente novamente!`);
+      });
+  }
   return (
     <>
       <LogoContainer className="flex">
@@ -62,6 +65,7 @@ function Login() {
 export default Login;
 
 const LoginCadastro = styled.div`
+  justify-content: center;
   padding: 30px 0;
   p {
     cursor: pointer;
@@ -95,6 +99,7 @@ const Form = styled.form`
 `;
 
 const LogoContainer = styled.div`
+  justify-content: center;
   padding-top: 10%;
   img {
     width: 250px;

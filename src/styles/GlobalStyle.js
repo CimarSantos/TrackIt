@@ -93,6 +93,7 @@ video {
     font: inherit;
     vertical-align: baseline;
     font-family: 'Lexend Deca', sans-serif;
+    
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -110,6 +111,7 @@ section {
 }
 body {
     line-height: 1;
+    background-color: #e5e5e5;
 }
 ol,
 ul {
@@ -134,7 +136,6 @@ table {
 .flex{
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 `;
 

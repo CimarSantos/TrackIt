@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+
+import axios from "axios";
+import UserContext from "../contexts/UserContext";
 
 import Logo from "../assets/imgs/Logo.png";
-import axios from "axios";
 
 function Cadastro() {
   const navigate = useNavigate();
@@ -11,6 +13,7 @@ function Cadastro() {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
   const [password, setPassword] = useState("");
+  const { setUser } = useContext(UserContext);
 
   function Cadastrar(e) {
     e.preventDefault();
@@ -27,6 +30,7 @@ function Cadastro() {
       )
       .then((res) => {
         alert("Cadastro realizado com sucesso! Faça seu login.");
+        setUser(res.data);
         navigate("/");
       })
       .catch((err) => {
@@ -81,6 +85,7 @@ function Cadastro() {
 export default Cadastro;
 
 const LoginCadastro = styled.div`
+  justify-content: center;
   padding: 30px 0;
   p {
     cursor: pointer;
@@ -114,6 +119,7 @@ const Form = styled.form`
 `;
 
 const LogoContainer = styled.div`
+  justify-content: center;
   padding-top: 20%;
   img {
     width: 250px;

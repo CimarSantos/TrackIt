@@ -1,9 +1,36 @@
+import styled from "styled-components";
+import UserContext from "../contexts/UserContext";
+
+import LogoTop from "../assets/imgs/LogoTopp.png";
+import { useContext } from "react";
+
 function Topo() {
+  const { user } = useContext(UserContext);
+  console.log(user);
   return (
     <>
-      <h1>Topo</h1>
+      <TopBar>
+        <img src={LogoTop} alt="TrakIt" />
+        <User src={user.image} alt="UserImage" />
+      </TopBar>
     </>
   );
 }
 
 export default Topo;
+
+const TopBar = styled.div`
+  height: 70px;
+  background-color: #126ba5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+`;
+
+const User = styled.img`
+  width: 54px;
+  height: 54px;
+  background-color: #fff;
+  border-radius: 50%;
+`;
