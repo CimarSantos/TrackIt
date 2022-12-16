@@ -93,7 +93,7 @@ video {
     font: inherit;
     vertical-align: baseline;
     font-family: 'Lexend Deca', sans-serif;
-    
+    text-decoration: none;
 }
 /* HTML5 display-role reset for older browsers */
 article,

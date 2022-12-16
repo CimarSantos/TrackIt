@@ -120,7 +120,7 @@ const Form = styled.form`
 
 const LogoContainer = styled.div`
   justify-content: center;
-  padding-top: 20%;
+  padding-top: 10%;
   img {
     width: 250px;
   }

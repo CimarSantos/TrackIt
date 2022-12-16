@@ -9,7 +9,9 @@ function Menu() {
           <p> Hábitos</p>
         </Link>
         <div className="flex">
-          <Link to="/hoje">Hoje</Link>
+          <Link to="/hoje">
+            <span> Hoje </span>
+          </Link>
         </div>
         <Link to="/historico">
           <p> Histórico </p>
@@ -29,8 +31,9 @@ const MenuBar = styled.div`
   background-color: #fff;
   justify-content: space-around;
   gap: 25%;
+  box-shadow: 0 0 5px #000;
   p {
-    font-size: 18px;
+    font-size: 20px;
     color: #52b6ff;
     cursor: pointer;
   }
@@ -42,5 +45,15 @@ const MenuBar = styled.div`
     height: 91px;
     border-radius: 50%;
     margin-bottom: 50px;
+    box-shadow: 0 -1px 5px #000;
+
+    &:hover {
+      box-shadow: 0 0 10px red;
+    }
+    span {
+      font-size: 20px;
+      color: #fff;
+      font-weight: 500;
+    }
   }
 `;
