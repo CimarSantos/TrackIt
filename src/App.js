@@ -11,24 +11,36 @@ import Hoje from "./pages/Hoje";
 
 function App() {
   const [user, setUser] = useState([]);
-  const [token, setToken] = useState(null);
-  const contextValue = { user, setUser, token, setToken };
-  return (
-    <>
-      <GlobalStyle />
-      <UserContext.Provider value={contextValue}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/cadastro" element={<Cadastro />} />
-            <Route path="/habitos" element={<Habitos />} />
-            <Route path="/hoje" element={<Hoje />} />
-            <Route path="/historico" element={<Historico />} />
-          </Routes>
-        </BrowserRouter>
-      </UserContext.Provider>
-    </>
-  );
+    const [token, setToken] = useState(null);
+    const [completed, setCompleted] = useState(0);
+    const contextValue = { user, setUser, token, setToken };
+    return (
+      <>
+        <GlobalStyle />
+        <UserContext.Provider value={contextValue}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Login setCompleted={setCompleted} />} />
+              <Route path="/cadastro" element={<Cadastro />} />
+              <Route
+                path="/habitos"
+                element={<Habitos completed={completed} />}
+              />
+              <Route
+                path="/hoje"
+                element={
+                  <Hoje completed={completed} setCompleted={setCompleted} />
+                }
+              />
+              <Route
+                path="/historico"
+                element={<Historico completed={completed} />}
+              />
+            </Routes>
+          </BrowserRouter>
+        </UserContext.Provider>
+      </>
+    );
 }
 
 export default App;
