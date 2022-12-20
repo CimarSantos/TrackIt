@@ -6,10 +6,9 @@ import { useContext } from "react";
 
 function Topo() {
   const { user } = useContext(UserContext);
-  console.log(user);
   return (
     <>
-      <TopBar>
+      <TopBar data-test="header">
         <img src={LogoTop} alt="TrakIt" />
         <User src={user.image} alt="UserImage" />
       </TopBar>
@@ -26,6 +25,7 @@ const TopBar = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
+  box-shadow: 0 0 10px #000;
 `;
 
 const User = styled.img`

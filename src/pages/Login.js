@@ -40,22 +40,26 @@ function Login() {
       </LogoContainer>
       <Form className="flex" onSubmit={fazerLogin}>
         <input
+          data-test="email-input"
           type="email"
           placeholder="e-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         ></input>
         <input
+          data-test="password-input"
           type="password"
           placeholder="senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <button type="submit">Entrar</button>
+        <button data-test="login-btn" type="submit">
+          Entrar
+        </button>
       </Form>
       <Link to="/cadastro">
         <LoginCadastro className="flex">
-          <p>Não tem uma conta? Cadastre-se!</p>
+          <p data-test="signup-link">Não tem uma conta? Cadastre-se!</p>
         </LoginCadastro>
       </Link>
     </>

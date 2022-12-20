@@ -79,22 +79,29 @@ function Habito({
 
   return (
     <HabitBox
+      data-test="today-habit-container"
       selected={selected}
       currentSequence={currentSequence}
       highestSequence={highestSequence}
     >
       <div>
-        <p>{name}</p>
+        <p data-test="today-habit-name">{name}</p>
         <span>
           <h3>Sequência atual: </h3>
-          <h4> {` ${currentSequence}`} dia(s)</h4>
+          <h4 data-test="today-habit-sequence">
+            {" "}
+            {` ${currentSequence}`} dia(s)
+          </h4>
         </span>
         <span>
           <h3>Seu recorde: </h3>
-          <h4> {` ${highestSequence}`} dia(s)</h4>
+          <h4 data-test="today-habit-record">
+            {" "}
+            {` ${highestSequence}`} dia(s)
+          </h4>
         </span>
       </div>
-      <button onClick={toggleSelect}>
+      <button data-test="today-habit-check-btn" onClick={toggleSelect}>
         <img src={feito} alt="Feito" />
       </button>
     </HabitBox>
@@ -125,13 +132,15 @@ const Hoje = ({ setCompleted, completed }) => {
       <Topo />
       <Habitos>
         <div className="habitosHoje">
-          <h2>
+          <h2 data-test="today">
             {weekday.charAt(0).toUpperCase() + weekday.slice(1)}, {date}
           </h2>
           {completed === 0 ? (
-            <h4>Nenhum hábito concluído ainda</h4>
+            <h4 data-test="today-counter">Nenhum hábito concluído ainda</h4>
           ) : (
-            <h4>{completed * 100}% dos hábitos concluídos </h4>
+            <h4 data-test="today-counter">
+              {completed * 100}% dos hábitos concluídos{" "}
+            </h4>
           )}
         </div>
         <div className="MeusHabitos">
@@ -143,6 +152,7 @@ const Hoje = ({ setCompleted, completed }) => {
           ) : (
             userHabits.map((value, index) => (
               <Habito
+                data-test="today-habit-container"
                 setUserHabits={setUserHabits}
                 setCompleted={setCompleted}
                 userHabits={userHabits}
@@ -157,12 +167,15 @@ const Hoje = ({ setCompleted, completed }) => {
           )}
         </div>
       </Habitos>
-      <BarraFooter className="flex">
-        <h3 onClick={() => navigate("/habitos")}>Hábitos</h3>
+      <BarraFooter data-test="menu" className="flex">
+        <h3 data-test="habit-link" onClick={() => navigate("/habitos")}>
+          Hábitos
+        </h3>
 
-        <MenuHoje className="flex">
+        <MenuHoje data-test="today-link" className="flex">
           <Link to={`/hoje`}>
             <CircularProgressbar
+              data-test="today-link"
               value={completed * 100}
               text={`Hoje`}
               background
@@ -177,7 +190,9 @@ const Hoje = ({ setCompleted, completed }) => {
           </Link>
         </MenuHoje>
 
-        <h3 onClick={() => navigate("/historico")}>Histórico</h3>
+        <h3 data-test="history-link" onClick={() => navigate("/historico")}>
+          Histórico
+        </h3>
       </BarraFooter>
     </>
   );

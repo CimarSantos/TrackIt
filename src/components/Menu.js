@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 function Menu() {
   return (
     <>
-      <MenuBar className="flex">
+      <MenuBar data-test="menu" className="flex">
         <Link to="/habitos">
-          <p> Hábitos</p>
+          <p data-test="habit-link"> Hábitos</p>
         </Link>
         <div className="flex">
           <Link to="/hoje">
-            <span> Hoje </span>
+            <span data-test="today-link"> Hoje </span>
           </Link>
         </div>
         <Link to="/historico">
-          <p> Histórico </p>
+          <p data-test="history-link"> Histórico </p>
         </Link>
       </MenuBar>
     </>

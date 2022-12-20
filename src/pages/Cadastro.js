@@ -44,6 +44,7 @@ function Cadastro() {
       </LogoContainer>
       <Form className="flex" onSubmit={Cadastrar}>
         <input
+          data-test="email-input"
           type="email"
           placeholder="e-mail"
           value={email}
@@ -51,6 +52,7 @@ function Cadastro() {
           required
         ></input>
         <input
+          data-test="password-input"
           type="password"
           placeholder="senha"
           value={password}
@@ -58,6 +60,7 @@ function Cadastro() {
           required
         ></input>
         <input
+          data-test="user-name-input"
           type="text"
           placeholder="nome"
           value={name}
@@ -65,17 +68,20 @@ function Cadastro() {
           required
         ></input>
         <input
+          data-test="user-image-input"
           type="url"
           placeholder="foto"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           required
         ></input>
-        <button type="submit">Cadastrar</button>
+        <button data-test="signup-btn" type="submit">
+          Cadastrar
+        </button>
       </Form>
       <Link to="/">
         <LoginCadastro className="flex">
-          <p>Já tem uma conta? Faça login!</p>
+          <p data-test="login-link">Já tem uma conta? Faça login!</p>
         </LoginCadastro>
       </Link>
     </>

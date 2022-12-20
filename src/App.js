@@ -5,7 +5,7 @@ import GlobalStyle from "./styles/GlobalStyle";
 import UserContext from "./contexts/UserContext";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
-import Habitos from "./pages/Habitos";
+import Habitos from "./pages/Habitos/Init";
 import Historico from "./pages/Historico";
 import Hoje from "./pages/Hoje";
 
